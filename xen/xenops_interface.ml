@@ -298,6 +298,8 @@ module Vm = struct
 		name: string;
 		ssidref: int32;
 		xsdata: (string * string) list;
+		client_to_guest: (string * string) list;
+		guest_to_client: (string * string) list;
 		platformdata: (string * string) list;
 		bios_strings: (string * string) list;
 		ty: builder_info;
@@ -322,6 +324,8 @@ module Vm = struct
 		name = "unnamed";
 		ssidref = 0l;
 		xsdata = [];
+		client_to_guest = [];
+		guest_to_client = [];
 		platformdata = [];
 		bios_strings = [];
 		ty = default_builder_info;
@@ -367,6 +371,8 @@ module Vm = struct
 		uncooperative_balloon_driver: bool;
 		guest_agent: (string * string) list;
 		xsdata_state: (string * string) list;
+		client_to_guest_state: (string * string) list;
+		guest_to_client_state: (string * string) list;
 		last_start_time: float;
 		hvm: bool;
 	} with sexp
@@ -600,6 +606,8 @@ module VM = struct
 	external request_rdp: debug_info -> Vm.id -> bool -> Task.id = ""
 	external run_script: debug_info -> Vm.id -> string -> Task.id = ""
 	external set_xsdata: debug_info -> Vm.id -> (string * string) list -> Task.id = ""
+	external set_client_to_guest: debug_info -> Vm.id -> (string * string) list -> Task.id = ""
+	external set_guest_to_client: debug_info -> Vm.id -> (string * string) list -> Task.id = ""
 	external set_vcpus: debug_info -> Vm.id -> int -> Task.id = ""
 	external set_shadow_multiplier : debug_info -> Vm.id -> float -> Task.id = ""
 	external set_memory_dynamic_range : debug_info -> Vm.id -> int64 -> int64 -> Task.id = ""
