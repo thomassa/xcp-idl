@@ -513,6 +513,7 @@ module Vif = struct
 		plugged: bool;
 		kthread_pid: int;
 		media_present: bool;
+		pvs_rules_active: bool;
 	}
 end
 
