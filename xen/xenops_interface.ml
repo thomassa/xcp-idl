@@ -146,9 +146,17 @@ module Vgpu = struct
 	}
 	with sexp
 
+	type mxgpu = {
+		physical_pci_address: Pci.address;
+		sched: int;
+		framebufferbytes: int64;
+	}
+	with sexp
+
 	type implementation =
 		| GVT_g of gvt_g
 		| Nvidia of nvidia
+		| MxGPU of mxgpu
 
 	type id = string * string
 
